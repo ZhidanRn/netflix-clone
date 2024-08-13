@@ -38,6 +38,7 @@ bun dev
 
 - Next.js
 - Prisma
+- NextAuth
 - Tailwind CSS
 - Shadcn/ui
 - TypeScript
@@ -102,5 +103,6 @@ If you would like to contribute to this project, please follow these steps:
 ## Related Links
 - [Next.js Documentation](https://nextjs.org/docs)
 - [Prisma Documentation](https://www.prisma.io/docs)
+- [NextAuth Documentation](https://next-auth.js.org)
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs)
 - [shadcn/ui Documentation](https://ui.shadcn.com)
