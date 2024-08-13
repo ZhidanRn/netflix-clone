@@ -30,13 +30,10 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async signIn({ user, account }) {
-      // Log user and account for debugging
-      console.log('Sign-in user:', user);
-      console.log('Sign-in account:', account);
 
       if (!user.email) {
         console.error('No email found for user');
-        return false; // Prevent sign-in if email is not present
+        return false;
       }
 
       try {
@@ -83,10 +80,10 @@ export const authOptions: NextAuthOptions = {
         }
       } catch (error) {
         console.error('Error handling sign-in:', error);
-        return false; // Prevent sign-in if there's an error
+        return false; 
       }
 
-      return true; // Allow sign-in
+      return true;
     },
   },
 };
