@@ -23,7 +23,7 @@ bun dev
 ## Key Features
 
 - **User Authentication:** Implement user registration, login, and session management using NextAuth with support for multiple authentication providers like Google, GitHub, and Email.
-- **Movie and TV Show Listings:** Display a wide selection of movies and TV shows, fetched from a locally seeded file (`/public/seed/page.tsx`), including cover images, titles, genres, release dates, age ratings, and runtime.
+- **Movie and TV Show Listings:** Display a wide selection of movies and TV shows, fetched from a locally seeded file (`/app/seed/page.tsx`), including cover images, titles, genres, release dates, age ratings, and runtime.
 - **Detailed Content View:** Allow users to view detailed information about selected movies or TV shows, including synopsis, cast details, trailer, release date, age rating, and runtime.
 - **Watchlist:** Enable users to add movies and TV shows to a watchlist for easy access and future viewing.
 - **Responsive Design:** Ensure the application is fully responsive and provides a consistent user experience across various devices and screen sizes.
