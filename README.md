@@ -25,6 +25,8 @@ This is a Netflix clone web application built with Next.js, Prisma, and NextAuth
 - Shadcn/ui
 - TypeScript
 
+## Installation
+
 1. **Clone this repository:**
    ```bash
    git clone https://github.com/username/netflix-clone.git
