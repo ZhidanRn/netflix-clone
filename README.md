@@ -2,24 +2,6 @@
 
 This is a Netflix clone web application built with Next.js, Prisma, and NextAuth. The project replicates key features of Netflix, providing users with a seamless streaming experience, including user authentication, content browsing, and personalized recommendations.
 
-## Getting Started
-
-This project was bootstrapped with [create-next-app](https://nextjs.org/docs/app/building-your-application/creating-a-new-application).
-
-### Development
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
 ## Key Features
 
 - **User Authentication:** Implement user registration, login, and session management using NextAuth with support for multiple authentication providers like Google, GitHub, and Email.
@@ -34,7 +16,7 @@ bun dev
   - **Recently Added:** Showcases the latest additions to the content library.
   - **My List:** Personalized list where users can view their saved favorites and watch later items.
 
-## Requirements
+## Tools Used
 
 - Next.js
 - Prisma
@@ -42,6 +24,8 @@ bun dev
 - Tailwind CSS
 - Shadcn/ui
 - TypeScript
+
+## Installation
 
 1. **Clone this repository:**
    ```bash
