@@ -6,7 +6,7 @@ import { NextAuthProvider } from "./components/NextAuthProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Netflix",
+  title: "Netflix - Watch TV Shows Online, Watch Movies Online",
   description: "Netflix is a streaming application to delivers a viewing experience akin to leading streaming platforms.",
 };
 
