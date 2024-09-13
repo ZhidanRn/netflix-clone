@@ -38,3 +38,17 @@ export async function deleteFromWatchList(formData: FormData) {
 
     return data
 }
+
+export async function checkIfInWatchList(movieId: number): Promise<boolean> {
+    const session = await getServerSession(authOptions);
+    if (!session || !session.user) return false;
+
+    const count = await prisma.watchList.count({
+        where: {
+            movieId: movieId,
+            userId: session.user.email as string,  // atau userId, tergantung cara Anda menyimpan user
+        },
+    });
+
+    return count > 0;
+}
