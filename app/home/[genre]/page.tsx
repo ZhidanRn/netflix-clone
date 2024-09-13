@@ -115,6 +115,7 @@ export default async function CategoryPage({params}: {params: {genre: string}}) 
                                 watchList={movie.WatchLists.length > 0 ? true : false}
                                 year={movie.release}
                                 youtubeUrl={movie.youtubeString}
+                                useHomePrefix={true}
                             />
                         </div>
                     </div>

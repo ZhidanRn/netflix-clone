@@ -1,4 +1,5 @@
 import { checkIfInWatchList } from "@/app/action";
+import ShareButton from "@/app/components/ShareButton";
 import WatchListButton from "@/app/components/WatchListButton";
 import prisma from "@/app/utils/db";
 
@@ -58,7 +59,8 @@ export default async function Watch({ params }: { params: { id: number } }) {
 
                 <hr className="my-4" />
             
-            <WatchListButton movieId={movieId} watchListId={data?.id.toString()} watchList={isInWatchList} />
+                <WatchListButton movieId={movieId} watchListId={data?.id.toString()} watchList={isInWatchList} />
+                <ShareButton title={data?.title} text={data?.overview} />
             </div>
         </div>
     )
