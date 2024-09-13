@@ -17,9 +17,10 @@ interface iAppProps {
     year: number,
     age: number,
     time: number,
+    useHomePrefix: boolean;
 }
 
-export function MovieCard({ title, overview, movieId, watchList, watchListId, youtubeUrl, year, age, time }: iAppProps) {
+export function MovieCard({ title, overview, movieId, watchList, watchListId, youtubeUrl, year, age, time, useHomePrefix }: iAppProps) {
     const [open, setOpen] = useState(false)
     const pathName = usePathname()
     
@@ -62,6 +63,7 @@ export function MovieCard({ title, overview, movieId, watchList, watchListId, yo
             <PlayVideoModal 
                 youtubeUrl={youtubeUrl} 
                 key={movieId} 
+                id={movieId}
                 title={title} 
                 overview={overview} 
                 state={open} 
@@ -69,6 +71,7 @@ export function MovieCard({ title, overview, movieId, watchList, watchListId, yo
                 release={year}
                 age={age}
                 duration={time} 
+                useHomePrefix={useHomePrefix}
             />
         </>
     )

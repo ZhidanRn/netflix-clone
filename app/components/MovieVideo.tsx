@@ -45,6 +45,7 @@ async function getData() {
                         title={data?.title as string} 
                         youtubeUrl={data?.youtubeString as string}
                         key={data?.id}
+                        useHomePrefix={true}
                     />
                 </div>
             </div>

@@ -63,6 +63,7 @@ export default async function RecentlyAdded() {
                                 age={movie.age}
                                 year={movie.release}
                                 time={movie.duration}
+                                useHomePrefix={false}
                             />
                         </div>
                     </div>
