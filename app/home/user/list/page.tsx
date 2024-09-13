@@ -66,6 +66,7 @@ export default async function WatchList() {
                                 watchList={movie.Movie?.WatchLists.length as number > 0 ? true : false}
                                 year={movie.Movie?.release as number}
                                 youtubeUrl={movie.Movie?.youtubeString as string}
+                                useHomePrefix={true}
                             />
                         </div>
                     </div>
