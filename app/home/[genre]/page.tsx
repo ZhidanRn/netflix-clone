@@ -5,8 +5,6 @@ import { getServerSession } from "next-auth"
 import Image from "next/image"
 
 async function getData(category: string, userId: string) {
-    console.log(`Fetching data for category: ${category} and userId: ${userId}`);
-
     switch(category) {
         case "shows": {
             const data = await prisma.movie.findMany({
@@ -84,17 +82,8 @@ async function getData(category: string, userId: string) {
 
 export default async function CategoryPage({params}: {params: {genre: string}}) {
     const session = await getServerSession(authOptions)
-
-    console.log("Session:", session);
-    console.log("Params:", params);
-
     const data = await getData(params.genre, session?.user?.email as string);
 
-    console.log("Fetched Data:", data);
-
-    if (data.length === 0) {
-        return <p>No data found for category {params.genre}</p>;
-    }
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-5 sm:px-0 mt-10 gap-6">
             {data.map((movie) => (
