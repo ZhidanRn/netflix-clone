@@ -147,7 +147,7 @@ export default function CommentSection({ movieId, userId }: CommentSectionProps)
     };
 
     return (
-        <div className=" my-4 rounded-lg shadow-md">
+        <div className="relative my-4 rounded-lg shadow-md overflow-x-hidden">
             <h2 className="text-xl font-bold mb-4">All Comments</h2>
 
             <form onSubmit={(e) => handleCommentSubmit(e)} className="flex gap-2 items-center">
@@ -177,18 +177,18 @@ export default function CommentSection({ movieId, userId }: CommentSectionProps)
                                 <Image
                                     src={comment.user.image}
                                     alt={comment.user.name}
-                                    width={40}
-                                    height={40}
-                                    className="rounded-full object-cover"
+                                    width={30}
+                                    height={30}
+                                    className="rounded-full object-cover mt-2"
                                 />
                             )}
                             <div className="flex flex-col w-full">
                                 <div className="my-2">
-                                    <p className="font-semibold text-lg">
+                                    <p className="font-semibold text-md text-wrap">
                                         {comment.user.name}
                                         <span className="ml-1 text-sm text-gray-400">&bull; {timeAgo(comment.createdAt)}</span> 
                                     </p>
-                                    <p>{comment.content}</p>
+                                    <p className="text-sm text-wrap">{comment.content}</p>
                                 </div>
 
                                 <button 
@@ -200,27 +200,27 @@ export default function CommentSection({ movieId, userId }: CommentSectionProps)
                                 </button>
 
                                 {replyState[comment.id] !== undefined && (
-                                        <form onSubmit={(e) => handleCommentSubmit(e, comment.id)} className="flex gap-2 items-center mt-2">
+                                        <form onSubmit={(e) => handleCommentSubmit(e, comment.id)} className="flex flex-wrap gap-2 max-w-full items-center mt-2 ">
                                             <input
                                                 type="text"
                                                 value={replyState[comment.id]}
                                                 onChange={(e) => setReplyState(prev => ({ ...prev, [comment.id]: e.target.value }))}
                                                 placeholder={`Reply to ${comment.user.name}`}
-                                                className="flex-1 px-4 py-2 bg-black border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                                                className="flex-1 sm:px-4 sm:py-2 px-2 py-1 bg-black border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
                                                 required
                                             />
                                             <Button 
                                                 type="button"
                                                 variant={"outline"} 
                                                 onClick={() => handleCancel(comment.id)} 
-                                                className="px-4 py-2 rounded-lg hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500">
+                                                className="sm:px-4 sm:py-2 px-2 py-1 rounded-lg hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500">
                                                 Cancel
                                             </Button>
                                             <Button
                                                 type="submit"
                                                 disabled={!replyState[comment.id].trim()}
                                                 variant={"outline"}
-                                                className="bg-red-500 px-4 py-2 rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
+                                                className="bg-red-500 sm:px-4 sm:py-2 px-2 py-1 rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
                                             >
                                                 Reply
                                             </Button>
@@ -236,18 +236,18 @@ export default function CommentSection({ movieId, userId }: CommentSectionProps)
                                                         <Image
                                                             src={reply.user.image}
                                                             alt={reply.user.name || 'User'}
-                                                            width={40}
-                                                            height={40}
-                                                            className="rounded-full object-cover"
+                                                            width={30}
+                                                            height={30}
+                                                            className="rounded-full object-cover mt-2"
                                                         />
                                                     )}
                                                     <div className="flex flex-col w-full">
                                                         <div className="my-2">
-                                                            <p className="font-semibold text-lg">
+                                                            <p className="font-semibold text-sm text-wrap">
                                                                 {reply.user.name}
                                                                 <span className="ml-1 text-sm text-gray-400">&bull; {timeAgo(reply.createdAt)}</span> 
                                                             </p>
-                                                            <p>{reply.content}</p>
+                                                            <p className="text-xs text-wrap">{reply.content}</p>
                                                         </div>
                                                     </div>
                                                 </div>
