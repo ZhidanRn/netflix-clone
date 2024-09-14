@@ -7,7 +7,9 @@ const nextConfig = {
                 hostname: 'image.tmdb.org',
                 port : '',
             }
-        ]
+        ],
+        
+        domains: ['lh3.googleusercontent.com'],
     }
 };
 

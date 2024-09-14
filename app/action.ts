@@ -55,40 +55,52 @@ export async function checkIfInWatchList(movieId: number): Promise<boolean> {
 }
 
 export async function addComment(formData: FormData) {
-    const content = formData.get('content') as string;
-    const userId = formData.get('userId') as string;
-    const movieId = parseInt(formData.get('movieId') as string);
+    const content = formData.get("content") as string;
+    const userEmail = formData.get("userId") as string;
+    const movieId = parseInt(formData.get("movieId") as string);
+    const parentId = formData.get("parentId") as string | null;
 
-    const session = await getServerSession(authOptions);
+    const user = await prisma.user.findUnique({
+        where: { email: userEmail }
+    });
 
-    if (!session || !session.user || session.user.email !== userId)  {
-        throw new Error('Unauthorized');
+    if (!user) {
+        throw new Error('User does not exist');
     }
 
     const comment = await prisma.comment.create({
         data: {
-            content: content,
-            userId: userId,
-            movieId: movieId,
+            content,
+            userId: user.id,
+            movieId,
+            parentId: parentId ? parentId : null,
         }
     });
-
-    revalidatePath(`/watch/${movieId}`); // Refresh path after adding comment
 
     return comment;
 }
 
-// Fungsi untuk mengambil komentar
 export async function getComments(movieId: number) {
     const comments = await prisma.comment.findMany({
         where: {
             movieId: movieId,
+            parentId: null,
         },
         include: {
             user: {
                 select: {
                     name: true,
                     image: true,
+                }
+            },
+            replies: {
+                include: {
+                    user: {
+                        select: {
+                            name: true,
+                            image: true,
+                        }
+                    }
                 }
             }
         },

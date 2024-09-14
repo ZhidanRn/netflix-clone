@@ -2,7 +2,9 @@ import { checkIfInWatchList } from "@/app/action";
 import CommentSection from "@/app/components/CommentSection";
 import ShareButton from "@/app/components/ShareButton";
 import WatchListButton from "@/app/components/WatchListButton";
+import { authOptions } from "@/app/utils/auth";
 import prisma from "@/app/utils/db";
+import { getServerSession } from "next-auth";
 
 async function getData(id: number) {
     const data = await prisma.movie.findUnique({
@@ -27,6 +29,9 @@ async function getData(id: number) {
 export default async function Watch({ params }: { params: { id: number } }) {
   const movieId = parseInt(params.id.toString());
   const data = await getData(movieId);
+  
+  const session = await getServerSession(authOptions);
+  const userId = session?.user?.email || '';
 
   if (!data) {
     return <div>No Data</div>;
@@ -64,7 +69,7 @@ export default async function Watch({ params }: { params: { id: number } }) {
                     <WatchListButton movieId={movieId} watchListId={data?.id.toString()} watchList={isInWatchList} />
                     <ShareButton title={data?.title} text={data?.overview} />
                 </div>
-                <CommentSection movieId={movieId} userId={data?.id.toString()} />
+                <CommentSection movieId={movieId} userId={userId} />
             </div>
         </div>
     )
