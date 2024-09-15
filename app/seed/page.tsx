@@ -31,7 +31,7 @@ export default function SeddDatabase() {
                 overview:
                   "Celebrated sleuth Hercule Poirot, now retired and living in self-imposed exile in Venice, reluctantly attends a Halloween séance at a decaying, haunted palazzo. When one of the guests is murdered, the detective is thrust into a sinister world of shadows and secrets.",
                 release: 2023,
-                videoSource: "",
+                videoSource: "https://utfs.io/f/tqPvIYd5xbIQBNQS3dAL4zUE36YjOaP0kyQVpxlZTJbntDdc",
                 category: "recent",
                 youtubeString: "https://www.youtube.com/embed/yEddsSwweyE",
               },
@@ -43,7 +43,7 @@ export default function SeddDatabase() {
                 overview:
                   "Recently fired and desperate for work, a troubled young man named Mike agrees to take a position as a night security guard at an abandoned theme restaurant: Freddy Fazbear's Pizzeria. But he soon discovers that nothing at Freddy's is what it seems.",
                 release: 2023,
-                videoSource: "",
+                videoSource: "https://utfs.io/f/tqPvIYd5xbIQOJklWDZMmQXA6b0ihPf9dyJeUHlw2cnKIsBF",
                 imageString:
                   "https://image.tmdb.org/t/p/original/t5zCBSB5xMDKcDqe91qahCOUYVV.jpg",
                 category: "recent",
