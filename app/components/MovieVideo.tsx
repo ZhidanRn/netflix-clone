@@ -29,7 +29,7 @@ import MovieButtons from "./MovieButtons";
     if (movies.length === 0) {
         return (
             <div className="h-[55vh] lg:h-[60vh] w-full flex justify-center items-center">
-                <div className="w-16 h-16 border-t-4 border-blue-500 border-solid rounded-full animate-spin"></div>
+                <div className="w-16 h-16 border-t-4 border-red-500 border-solid rounded-full animate-spin"></div>
             </div>
         )
     }
@@ -49,7 +49,7 @@ import MovieButtons from "./MovieButtons";
 
             <div className="absolute w-[90%] lg:w-[40%] mx-auto">
                 <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold">{currentMovie?.title}</h1>
-                <p className="text-white text-lg m-5 line-clamp-3">{currentMovie?.overview}</p>
+                <p className="text-white text-lg my-5 line-clamp-3">{currentMovie?.overview}</p>
                 <div className="flex gap-x-3 mt-4">
                     <MovieButtons 
                         age={currentMovie?.age as number} 
