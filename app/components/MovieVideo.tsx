@@ -1,22 +1,26 @@
 'use client'
 
-import { useEffect, useState } from "react";
-import MovieButtons from "./MovieButtons";
- 
- export default function MovieVideo() {
+import { useEffect, useState, useCallback, useMemo } from "react";
+import dynamic from 'next/dynamic';
+
+// Lazy load MovieButtons
+const MovieButtons = dynamic(() => import("./MovieButtons"), { ssr: false });
+
+export default function MovieVideo() {
     const [movies, setMovies] = useState<any>([]);
     const [currentIndex, setCurrentIndex] = useState(0);
 
+    // Fetch movies data
     useEffect(() => {
         async function fetchMovies() {
             const response = await fetch('api/movies');
-            const data = await response.json()
+            const data = await response.json();
             setMovies(data);
         }
-
         fetchMovies();
     }, []);
 
+    // Update video index periodically
     useEffect(() => {
         if (movies.length === 0) return;
 
@@ -24,17 +28,18 @@ import MovieButtons from "./MovieButtons";
             setCurrentIndex((prevIndex) => (prevIndex + 1) % movies.length);
         }, 8000);
         return () => clearInterval(interval);
-    }, [movies])
+    }, [movies]);
+
+    // Memoize current movie
+    const currentMovie = useMemo(() => movies[currentIndex], [movies, currentIndex]);
 
     if (movies.length === 0) {
         return (
             <div className="h-[55vh] lg:h-[60vh] w-full flex justify-center items-center">
                 <div className="w-16 h-16 border-t-4 border-red-500 border-solid rounded-full animate-spin"></div>
             </div>
-        )
+        );
     }
-
-    const currentMovie = movies[currentIndex];
 
     return (
         <div className="h-[55vh] lg:h-[60vh] w-full flex justify-start items-center">
@@ -65,5 +70,5 @@ import MovieButtons from "./MovieButtons";
                 </div>
             </div>
         </div>
-    )
- }
+    );
+}
