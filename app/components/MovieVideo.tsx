@@ -2,15 +2,15 @@
 
 import { useEffect, useState, useCallback, useMemo } from "react";
 import dynamic from 'next/dynamic';
+import { error } from "console";
 
-// Lazy load MovieButtons
 const MovieButtons = dynamic(() => import("./MovieButtons"), { ssr: false });
 
 export default function MovieVideo() {
     const [movies, setMovies] = useState<any>([]);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [videoSrc, setVideoSrc] = useState<string>("");
 
-    // Fetch movies data
     useEffect(() => {
         async function fetchMovies() {
             const response = await fetch('api/movies');
@@ -20,7 +20,6 @@ export default function MovieVideo() {
         fetchMovies();
     }, []);
 
-    // Update video index periodically
     useEffect(() => {
         if (movies.length === 0) return;
 
@@ -30,8 +29,19 @@ export default function MovieVideo() {
         return () => clearInterval(interval);
     }, [movies]);
 
-    // Memoize current movie
     const currentMovie = useMemo(() => movies[currentIndex], [movies, currentIndex]);
+
+    useEffect(() => {
+        if (!currentMovie) return;
+
+        fetch(currentMovie?.videoSource)
+            .then(response => response.blob())
+            .then(blob => {
+                const url = URL.createObjectURL(blob);
+                setVideoSrc(url);
+            })
+            .catch(error => console.log('video fetch error: ', error));
+    }, [currentMovie]);
 
     if (movies.length === 0) {
         return (
@@ -47,9 +57,8 @@ export default function MovieVideo() {
                 autoPlay
                 muted
                 loop
-                src={currentMovie?.videoSource}
+                src={videoSrc}
                 className="w-full absolute top-0 left-0 h-[60vh] object-cover -z-10 brightness-[60%]"
-                onError={(e) => console.log('video error: ', e)}
             ></video>
 
             <div className="absolute w-[90%] lg:w-[40%] mx-auto">
