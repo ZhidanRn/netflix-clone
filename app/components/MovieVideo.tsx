@@ -26,7 +26,13 @@ import MovieButtons from "./MovieButtons";
         return () => clearInterval(interval);
     }, [movies])
 
-    if (movies.length === 0) return <p>Loading....</p>;
+    if (movies.length === 0) {
+        return (
+            <div className="h-[55vh] lg:h-[60vh] w-full flex justify-center items-center">
+                <div className="w-16 h-16 border-t-4 border-blue-500 border-solid rounded-full animate-spin"></div>
+            </div>
+        )
+    }
 
     const currentMovie = movies[currentIndex];
 
