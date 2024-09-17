@@ -1,12 +1,17 @@
 # Netflix Clone
 
-This is a Netflix clone web application built with Next.js, Prisma, and NextAuth. The project replicates key features of Netflix, providing users with a seamless streaming experience, including user authentication, content browsing, and personalized recommendations.
+This is a Netflix clone web application built with Next.js, Prisma, and NextAuth. The project replicates key features of Netflix, providing users with a seamless streaming experience, including user authentication, content browsing.
 
 ## Key Features
 
 - **User Authentication:** Implement user registration, login, and session management using NextAuth with support for multiple authentication providers like Google, GitHub, and Email.
-- **Movie and TV Show Listings:** Display a wide selection of movies and TV shows, fetched from a locally seeded file (`/app/seed/page.tsx`), including cover images, titles, genres, release dates, age ratings, and runtime.
+- **Movie and TV Show Listings:** Display a wide selection of movies and TV shows, including cover images, titles, genres, release dates, age ratings, and runtime.
 - **Detailed Content View:** Allow users to view detailed information about selected movies or TV shows, including synopsis, cast details, trailer, release date, age rating, and runtime.
+- **Watch Page:** 
+  - **Streaming:** Users can stream movies and TV shows directly.
+  - **Add to Favorites:** Users can add movies and TV shows to their favorites list.
+  - **Share:** Users can share movies and TV shows with others.
+  - **Comments:** Users can leave comments on movies and TV shows.
 - **Watchlist:** Enable users to add movies and TV shows to a watchlist for easy access and future viewing.
 - **Responsive Design:** Ensure the application is fully responsive and provides a consistent user experience across various devices and screen sizes.
 - **Navigation:** Intuitive navigation to different sections:
@@ -24,6 +29,7 @@ This is a Netflix clone web application built with Next.js, Prisma, and NextAuth
 - Tailwind CSS
 - Shadcn/ui
 - TypeScript
+- PostgreSql
 
 ## Installation
 
@@ -45,8 +51,9 @@ This is a Netflix clone web application built with Next.js, Prisma, and NextAuth
 3. **Set up the database:**
    ```bash
    npx prisma migrate dev
-   npx prisma seed
+   npx prisma generate
    ```
+
 4. **Start the development server:**
    ```bash
    npm run dev
@@ -59,7 +66,8 @@ This is a Netflix clone web application built with Next.js, Prisma, and NextAuth
    ```
 
 ## Usage
-- **Access the application at http://localhost:3000:** after starting the development server.
+- **Access the application at http://localhost:3000/seed** to add movies and TV shows to the database.
+- **Access the application at http://localhost:3000:**.
 - **Navigate** using the menu to switch between:
   - **Home** - Main landing page.
   - **TV Shows** - Section dedicated to TV shows.
