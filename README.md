@@ -66,8 +66,9 @@ This is a Netflix clone web application built with Next.js, Prisma, and NextAuth
    ```
 
 ## Usage
-- **Access the application at http://localhost:3000/seed** to add movies and TV shows to the database.
+- **Access the application at http://localhost:3000/seed** to add movies and TV shows to the database and then click SUBMIT button.
 - **Access the application at http://localhost:3000:**.
+- **Login** to access the application. **
 - **Navigate** using the menu to switch between:
   - **Home** - Main landing page.
   - **TV Shows** - Section dedicated to TV shows.
