@@ -67,4 +67,30 @@
   body {
     @apply bg-black text-foreground;
   }
+  input[type='range']::-webkit-slider-thumb {
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background-color: #ff4757;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  input[type='range']::-webkit-slider-thumb:hover {
+      transform: scale(1.25);
+  }
+
+  input[type='range']::-moz-range-thumb {
+      width: 12px;
+      height: 12px;
+      background-color: #ff4757;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out;
+  }
+
+  input[type='range']::-moz-range-thumb:hover {
+      transform: scale(1.25);
+  }
 }

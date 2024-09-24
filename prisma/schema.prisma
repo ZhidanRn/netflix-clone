@@ -59,14 +59,18 @@ model User {
 }
 
 model Movie {
-  id            Int @id @default(autoincrement())
+  id            Int    @id @default(autoincrement())
   imageString   String
   title         String
-  age           Int 
+  age           Int
   duration      Float
   overview      String
   release       Int
   videoSource   String
+  videoSource360p String? 
+  videoSource480p String?
+  videoSource720p String?
+  videoSource1080p String?
   category      String
   youtubeString String
   WatchLists    WatchList[]
