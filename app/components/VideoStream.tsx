@@ -213,7 +213,7 @@ const VideoStream: React.FC<WatchClientProps> = ({ movieId, data, userId }) => {
                     <div className={`absolute bottom-4 left-0 right-0 p-4 flex flex-col 
                         ${(controlsVisible || isFullscreen) ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
                     >
-                        <div className="flex items-center mx-2 mb-5 group">
+                        <div className="flex items-center mx-2 sm:mb-5 mb-3 group">
                             <input
                                 type="range"
                                 min="0"
@@ -266,7 +266,7 @@ const VideoStream: React.FC<WatchClientProps> = ({ movieId, data, userId }) => {
                                         )}
                                     </button>
                                     {isVolumeHovered && (
-                                        <div className="absolute flex items-center justify-center bg-gray-900 p-3 rounded-sm cursor-pointer appearance-none -rotate-90 bottom-20 left-1/2 transform -translate-x-1/2 hover:group">
+                                        <div className="absolute flex items-center justify-center bg-gray-900 p-3 rounded-sm cursor-pointer appearance-none -rotate-90 sm:bottom-20 bottom-16 left-1/2 transform -translate-x-1/2 hover:group">
                                             <input 
                                                 type="range"
                                                 min="0" 
@@ -274,7 +274,7 @@ const VideoStream: React.FC<WatchClientProps> = ({ movieId, data, userId }) => {
                                                 step="0.1"
                                                 value={volume}
                                                 onChange={handleVolumeChange}
-                                                className="w-24 h-2"
+                                                className="w-16 sm:w-24 h-2"
                                                 style={{ 
                                                     background: `linear-gradient(to right, #ff4757 ${(volume) * 100}%, #ddd ${(volume) * 100}%)` 
                                                 }}
@@ -300,9 +300,9 @@ const VideoStream: React.FC<WatchClientProps> = ({ movieId, data, userId }) => {
                                     </button>
 
                                     {isSpeedHovered && (
-                                    <div className="absolute bg-zinc-800 w-[500px] h-32 rounded-sm flex flex-col justify-center items-center -top-36 -left-40 transform -translate-x-1/2">
-                                        <h1 className="absolute text-white text-2xl font-semibold left-5 top-2">Playback Speed</h1>
-                                        <div className="relative w-full flex items-center mt-16">
+                                    <div className="absolute bg-zinc-800 w-[200px] h-24 sm:w-[500px] sm:h-32 rounded-sm flex flex-col justify-center items-center -top-24 -left-5 sm:-top-36 sm:-left-40 transform -translate-x-1/2">
+                                        <h1 className="absolute text-white sm:text-2xl text-md font-semibold left-5 top-2">Playback Speed</h1>
+                                        <div className="relative w-full flex items-center mt-10 sm:16">
                                             <input 
                                                 type="range"
                                                 min="0" 
@@ -320,8 +320,8 @@ const VideoStream: React.FC<WatchClientProps> = ({ movieId, data, userId }) => {
                                                 style={{ opacity: 0, pointerEvents: 'none' }}
                                             />
                                             
-                                            <div className="absolute p-8 w-full flex justify-between items-center z-20 top-1/2 transform -translate-y-1/2">
-                                                <div className="absolute w-[400px] h-0.5 bg-gray-500 z-0 left-12 bottom-[72px]" />
+                                            <div className="absolute sm:p-8 p-3 w-full flex justify-between items-center z-20 top-1/2 transform -translate-y-1/2">
+                                                <div className="absolute sm:w-[400px] w-[150px] h-0.5 bg-gray-500 z-0 left-5 bottom-11 sm:left-12 sm:bottom-[72px]" />
                                                 
                                                 {speeds.map((speed, index) => (
                                                     <div 
@@ -339,7 +339,7 @@ const VideoStream: React.FC<WatchClientProps> = ({ movieId, data, userId }) => {
                                                                 playbackRate === speed ? "bg-red-500 transform scale-150" : "bg-gray-200"
                                                             }`}
                                                         ></div>
-                                                        <span className={`text-white text-xl mt-2 ${playbackRate === speed ? "font-bold" : ""}`}>
+                                                        <span className={`text-white sm:text-xl text-sm mt-2 ${playbackRate === speed ? "font-bold" : ""}`}>
                                                             {speed}x
                                                         </span>
                                                     </div>
