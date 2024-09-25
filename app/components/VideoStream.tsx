@@ -44,10 +44,11 @@ const speeds = [0.5, 0.75, 1, 1.25, 1.5];
 const VideoStream: React.FC<WatchClientProps> = ({ movieId, data, userId }) => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const videoContainerRef = useRef<HTMLDivElement>(null);
+    const [hoverTime, setHoverTime] = useState(0);
+    const [isHoveringTimebar, setIsHoveringTimebar] = useState(false);
     const [progress, setProgress] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
     const [isInWatchList, setIsInWatchList] = useState(false);
-    const [selectedQuality, setSelectedQuality] = useState('default');
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [controlsVisible, setControlsVisible] = useState(false);
@@ -186,6 +187,30 @@ const VideoStream: React.FC<WatchClientProps> = ({ movieId, data, userId }) => {
         return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
     };
 
+    const previewVideoRef = useRef<HTMLVideoElement>(null);
+
+    useEffect(() => {
+        if (videoRef.current) {
+            setDuration(videoRef.current.duration);
+        }
+    }, [videoRef.current]);
+
+    const handleHover = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (duration) {
+            const time = (e.nativeEvent.offsetX / e.currentTarget.offsetWidth) * duration;
+            setHoverTime(time);
+            if(previewVideoRef.current) {
+                previewVideoRef.current.currentTime = time;
+            }
+        }
+    }
+
+    const leftPosition = (hoverTime / duration) * 100;
+    const adjustedLeft = Math.min(
+        Math.max(leftPosition, 9), 
+        92 - (44 / window.innerWidth * 100) 
+    );
+
     return (
         <div className="flex flex-col">
             <div 
@@ -210,28 +235,45 @@ const VideoStream: React.FC<WatchClientProps> = ({ movieId, data, userId }) => {
                     
                     {controlsVisible && (
 
-                    <div className={`absolute bottom-4 left-0 right-0 p-4 flex flex-col 
+                    <div className={`absolute sm:bottom-4 bottom-1 left-0 right-0 p-4 flex flex-col 
                         ${(controlsVisible || isFullscreen) ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
                     >
                         <div className="flex items-center mx-2 sm:mb-5 mb-3 group">
+
                             <input
                                 type="range"
                                 min="0"
                                 max="100"
                                 value={progress}
                                 onChange={handleSeek}
+                                onMouseMove={handleHover}
+                                onMouseEnter={() => setIsHoveringTimebar(true)}
+                                onMouseLeave={() => setIsHoveringTimebar(false)}
                                 className="w-full h-1 cursor-pointer appearance-none hover:h-2"
                                 style={{ 
                                     background: `linear-gradient(to right, #ff4757 ${progress}%, #ddd ${progress}%)` 
                                 }}
                             />
+
+                            {isHoveringTimebar && (
+                                <div
+                                    className="absolute top-[60px] z-10 transition-opacity duration-200 ease-in-out transform -translate-x-1/2 -translate-y-44 overflow-visible"
+                                    style={{
+                                        left: `${adjustedLeft}%`,
+                                    }}
+                                >
+                                    <video
+                                        ref={previewVideoRef}
+                                        className="w-44 h-auto min-w-44 min-h-max bg-black rounded shadow-lg sm:flex hidden outline-none outline-2 outline-red-500"
+                                        src={data.videoSource}
+                                        muted
+                                    />
+                                    <span className="text-white text-sm my-2 flex justify-center items-center">{formatTime(hoverTime)}</span>
+                                    
+                                </div>
+                            )}
+
                             <span className="text-white text-sm ml-2">{formatTime(currentTime)}</span>
-                            <div 
-                                className="absolute -top-3 left-0 bg-black text-white text-xs rounded p-1 transition-opacity duration-200 opacity-0 group-hover:opacity-100"
-                                style={{ left: `${progress}%`, transform: 'translateX(-50%)' }}
-                            >
-                                {formatTime(currentTime)} / {formatTime(duration)}
-                            </div>
                         </div>
 
                         <div className="flex justify-center items-center gap-5 mx-2">
