@@ -67,7 +67,16 @@
   body {
     @apply bg-black text-foreground;
   }
+  input[type='range'] {
+    -webkit-appearance: none; /* Chrome, Safari, Edge */
+    appearance: none;
+    background: linear-gradient(to right, #ff4757 50%, #ddd 50%);
+    outline: none;
+    border-radius: 5px;
+  }
+
   input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Safari dan Chrome */
     appearance: none;
     width: 12px;
     height: 12px;
@@ -75,22 +84,24 @@
     border-radius: 9999px;
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
-  }
+}
 
-  input[type='range']::-webkit-slider-thumb:hover {
-      transform: scale(1.25);
-  }
+input[type='range']::-webkit-slider-thumb:hover {
+    transform: scale(1.25);
+}
 
-  input[type='range']::-moz-range-thumb {
-      width: 12px;
-      height: 12px;
-      background-color: #ff4757;
-      border-radius: 9999px;
-      cursor: pointer;
-      transition: transform 0.2s ease-in-out;
-  }
+input[type='range']::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    background-color: #ff4757;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: -webkit-transform 0.2s ease-in-out; /* Tambahkan untuk Firefox */
+    transition: transform 0.2s ease-in-out;
+}
 
-  input[type='range']::-moz-range-thumb:hover {
-      transform: scale(1.25);
-  }
+input[type='range']::-moz-range-thumb:hover {
+    -webkit-transform: scale(1.25); /* Tambahkan untuk Firefox */
+    transform: scale(1.25);
+}
 }
