@@ -35,7 +35,7 @@ This is a Netflix clone web application built with Next.js, Prisma, and NextAuth
 
 1. **Clone this repository:**
    ```bash
-   git clone https://github.com/username/netflix-clone.git
+   git clone https://github.com/ZhidanRn/netflix-clone.git
    cd netflix-clone
    ```
 
